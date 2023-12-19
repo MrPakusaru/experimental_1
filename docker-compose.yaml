@@ -1,0 +1,77 @@
+version: '3.9'
+
+#Внутренняя сеть меж контейнерами
+networks:
+  bridge:
+    driver: bridge
+
+#Контейнеры
+services:
+
+  #Клиент-контейнер для фронтенда
+  client:
+    image: nginx:1.22
+    container_name: client_container
+    ports:
+      - "81:80"
+    networks:
+      - bridge
+    links:
+      - server
+    volumes:
+      - ./client/code:/var/www/html
+      - ./client/nginx/nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - TZ=Europe/Moscow
+    depends_on:
+      - server
+      - php
+
+  #Сервер-контейнер для бэкенда
+  server:
+    image: nginx:1.22
+    container_name: server_container
+    ports:
+      - "82:80"
+    networks:
+      - bridge
+    links:
+      - mysql
+    volumes:
+      - ./server/code:/var/www/html
+      - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf
+    environment:
+      - TZ=Europe/Moscow
+      - MYSQL_ROOT_PASSWORD=rootPassword
+      - MYSQL_DATABASE=myDB
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    depends_on:
+      - php
+      - mysql
+
+  #PHP контейнер для работы php кода
+  php:
+    image: php:8.2.6-fpm
+    container_name: php_container
+    networks:
+      - bridge
+    volumes:
+      - ./server/code:/var/www/html
+
+  #БД-контейнер для табличек
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    networks:
+      - bridge
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - TZ=Europe/Moscow
+      - MYSQL_ROOT_PASSWORD=rootPassword
+      - MYSQL_DATABASE=myDB
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
