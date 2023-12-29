@@ -1,2 +1,5 @@
-/server/code/vendor
+server/code/vendor
 db/
+.env
+local/
+.idea

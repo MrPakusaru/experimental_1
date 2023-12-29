@@ -1,3 +1,4 @@
+#Версия docker-compose, которую мы используем. Зависит от установленной версии docker
 version: '3.9'
 
 #Внутренняя сеть меж контейнерами
@@ -10,68 +11,95 @@ services:
 
   #Клиент-контейнер для фронтенда
   client:
+    #Ставится образ сервера для "оживления" кода
     image: nginx:1.22
+    #Название контейнера для управления на стороне разработчика
     container_name: client_container
+    #{Порт на стороне разработчика}:{Порт на стороне контейнера}
     ports:
       - "81:80"
+    #"Внутренняя сеть" для взаимодействия между контейнерами
     networks:
       - bridge
     links:
       - server
+    #Папки, в которых происходит дублирование файлов на сторонах >>> {у разработчика}:{внутри контейнера}
     volumes:
       - ./client/code:/var/www/html
       - ./client/nginx/nginx.conf:/etc/nginx/nginx.conf
+    #Заранее заданные внутри контейнера переменные среды для дальнейшего использования
     environment:
-      - TZ=Europe/Moscow
+      - TZ=${ENV_TZ}
+      - SERVER_ADDR=${ENV_SERVER_ADDR}
+    #Запускается или пакуется ТОЛЬКО после указанных ниже контейнеров (не их названий на стороне разработчика)
     depends_on:
       - server
       - php
 
   #Сервер-контейнер для бэкенда
   server:
+    #Ставится образ сервера для "оживления" кода
     image: nginx:1.22
+    #Название контейнера для управления на стороне разработчика
     container_name: server_container
+    #{Порт на стороне разработчика}:{Порт на стороне контейнера}
     ports:
       - "82:80"
+    #"Внутренняя сеть" для взаимодействия между контейнерами
     networks:
       - bridge
     links:
       - mysql
+    #Папки, в которых происходит дублирование файлов на сторонах >>> {у разработчика}:{внутри контейнера}
     volumes:
       - ./server/code:/var/www/html
       - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf
+    #Заранее заданные внутри контейнера переменные среды для дальнейшего использования
     environment:
-      - TZ=Europe/Moscow
-      - MYSQL_ROOT_PASSWORD=rootPassword
-      - MYSQL_DATABASE=myDB
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
+      - TZ=${ENV_TZ}
+      - MYSQL_ROOT_PASSWORD=${ENV_MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${ENV_MYSQL_DATABASE}
+      - MYSQL_USER=${ENV_MYSQL_USER}
+      - MYSQL_PASSWORD=${ENV_MYSQL_PASSWORD}
+    #Запускается или пакуется ТОЛЬКО после указанных ниже контейнеров (не их названий на стороне разработчика)
     depends_on:
       - php
       - mysql
 
   #PHP контейнер для работы php кода
   php:
+    #Ставится образ "инструкции управления кодом", который будет "оживлён"
     image: php:8.2.6-fpm
+    #Название контейнера для управления на стороне разработчика
     container_name: php_container
+    #"Внутренняя сеть" для взаимодействия между контейнерами
     networks:
       - bridge
+
+    #Папки, в которых происходит дублирование файлов на сторонах >>> {у разработчика}:{внутри контейнера}
+    #ДЛЯ PHP ДОЛЖНО ПРОИСХОДИТЬ ДУБЛИРОВАНИЕ ФАЙЛОВ АНАЛОГИЧНО АДРЕСАМ КОНТЕЙНЕРОВ-СЕРВЕРОВ, ИСПОЛЬЗУЮЩИХ PHP
     volumes:
       - ./server/code:/var/www/html
 
   #БД-контейнер для табличек
   mysql:
+    #Ставится образ для БД, хранящей данные
     image: mysql:8.0
+    #Название контейнера для управления на стороне разработчика
     container_name: mysql_container
+    #"Внутренняя сеть" для взаимодействия между контейнерами
     networks:
       - bridge
+    #{Порт на стороне разработчика}:{Порт на стороне контейнера}
     ports:
-      - "3306:3306"
+      - "3307:3306"
+    #Папки, в которых происходит дублирование файлов на сторонах >>> {у разработчика}:{внутри контейнера}
     volumes:
       - ./db:/var/lib/mysql
+    #Заранее заданные внутри контейнера переменные среды для дальнейшего использования
     environment:
-      - TZ=Europe/Moscow
-      - MYSQL_ROOT_PASSWORD=rootPassword
-      - MYSQL_DATABASE=myDB
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
+      - TZ=${ENV_TZ}
+      - MYSQL_ROOT_PASSWORD=${ENV_MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${ENV_MYSQL_DATABASE}
+      - MYSQL_USER=${ENV_MYSQL_USER}
+      - MYSQL_PASSWORD=${ENV_MYSQL_PASSWORD}
