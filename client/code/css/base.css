@@ -1,0 +1,82 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    min-width: 720px;
+    background-color: #e8e8e8;
+}
+.buttons
+{
+    margin-top: 30vh;
+    display: flex;
+    justify-content: center;
+}
+.buttons>button
+{
+    user-select: none;
+    width: 30vw;
+    height: 15vw;
+    transform: skewX(-15deg);
+    border-radius: 12px;
+    outline: none;
+    border-width: 3px;
+    display: block;
+    transition-duration: 0.2s;
+}
+.buttons>button:hover {border-color:  white;}
+.buttons>button:active {border-color:  white;}
+.first
+{
+    border-color: #0000fa;
+    background-color: #c7c7ff;
+}
+.first:hover{  background-color: #6161ff;}
+.first:active{ background-color: #0000fa;}
+.second
+{
+    margin: 0 2% 0 2%;
+    border-color: #fa0000;
+    background-color: #ffc7c7;
+}
+.second:hover{ background-color: #ff6161;}
+.second:active{ background-color: #fa0000;}
+.third
+{
+    border-color: #8800fa;
+    background-color: #e6c7ff;
+}
+.third:hover{ background-color: #c561ff;}
+.third:active{ background-color: #8800fa;}
+.buttons>button>p
+{
+    transform: skewX(15deg);
+    font-size:calc(2* var(--viewW) );
+    text-shadow: var(--shad-border);
+}
+
+
+
+
+
+
+
+
+
+
+
+:root
+{
+    --shadow:
+            5px  5px 25px var(--shad-col),  /*  Нижний - Справа */
+            5px -5px 25px var(--shad-col),  /*  Нижний - Слева  */
+            -5px  5px 25px var(--shad-col), /* Верхний - Справа */
+            -5px -5px 25px var(--shad-col);
+    --shad-border:
+            3px  0px 5px var(--sh-b-col),   /* Низ      */
+            0px 3px 5px var(--sh-b-col),    /* Справа   */
+            -3px  0px 5px var(--sh-b-col),  /* Верх     */
+            0px -3px 5px var(--sh-b-col);   /* Слева    */
+    --shad-col: white;
+    --sh-b-col: #ffffff;
+    --viewW: 1200vW/730;
+}

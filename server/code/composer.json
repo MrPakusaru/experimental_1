@@ -1,2 +1,22 @@
 {
+  "autoload": {
+    "psr-4": {
+      "Experimental_1\\": "src"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {
+    "ext-pdo": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*",
+    "devbeta/psr12-strict-rules": "dev-main",
+    "friendsofphp/php-cs-fixer": "dev-master"
+  }
 }
