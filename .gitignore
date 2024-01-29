@@ -1,5 +1,6 @@
 server/code/vendor
 db/
-.env
 local/
 .idea
+.php-cs-fixer.cache
+.env

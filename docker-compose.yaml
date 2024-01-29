@@ -38,8 +38,13 @@ services:
 
   #Сервер-контейнер для бэкенда
   server:
-    #Ставится образ сервера для "оживления" кода
-    image: nginx:1.22
+    #Указание на необходимость сборки из Dockerfile
+    build:
+      #"Точка отсчёта", где находится docker-compose файл.
+      context: .
+      #Путь, где нужно искать Dockerfile относительно "точки отсчёта"
+      dockerfile: ./server/Dockerfile
+
     #Название контейнера для управления на стороне разработчика
     container_name: server_container
     #{Порт на стороне разработчика}:{Порт на стороне контейнера}
@@ -54,13 +59,6 @@ services:
     volumes:
       - ./server/code:/var/www/html
       - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf
-    #Заранее заданные внутри контейнера переменные среды для дальнейшего использования
-    environment:
-      - TZ=${ENV_TZ}
-      - MYSQL_ROOT_PASSWORD=${ENV_MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${ENV_MYSQL_DATABASE}
-      - MYSQL_USER=${ENV_MYSQL_USER}
-      - MYSQL_PASSWORD=${ENV_MYSQL_PASSWORD}
     #Запускается или пакуется ТОЛЬКО после указанных ниже контейнеров (не их названий на стороне разработчика)
     depends_on:
       - php
@@ -80,11 +78,22 @@ services:
     #ДЛЯ PHP ДОЛЖНО ПРОИСХОДИТЬ ДУБЛИРОВАНИЕ ФАЙЛОВ АНАЛОГИЧНО АДРЕСАМ КОНТЕЙНЕРОВ-СЕРВЕРОВ, ИСПОЛЬЗУЮЩИХ PHP
     volumes:
       - ./server/code:/var/www/html
+      #Заранее заданные внутри контейнера переменные среды для дальнейшего использования
+    environment:
+      - TZ=${ENV_TZ}
+      - MYSQL_ROOT_PASSWORD=${ENV_MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${ENV_MYSQL_DATABASE}
+      - MYSQL_USER=${ENV_MYSQL_USER}
+      - MYSQL_PASSWORD=${ENV_MYSQL_PASSWORD}
 
   #БД-контейнер для табличек
   mysql:
-    #Ставится образ для БД, хранящей данные
-    image: mysql:8.0
+    #Указание на необходимость сборки из Dockerfile
+    build:
+      #"Точка отсчёта", где находится docker-compose файл.
+      context: .
+      #Путь, где нужно искать Dockerfile относительно "точки отсчёта"
+      dockerfile: ./database/Dockerfile
     #Название контейнера для управления на стороне разработчика
     container_name: mysql_container
     #"Внутренняя сеть" для взаимодействия между контейнерами
@@ -95,7 +104,7 @@ services:
       - "3307:3306"
     #Папки, в которых происходит дублирование файлов на сторонах >>> {у разработчика}:{внутри контейнера}
     volumes:
-      - ./db:/var/lib/mysql
+      - ./database/db:/var/lib/mysql
     #Заранее заданные внутри контейнера переменные среды для дальнейшего использования
     environment:
       - TZ=${ENV_TZ}
