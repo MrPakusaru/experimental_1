@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="#" /> <!-- TODO: ссылка на ico -->
     <link rel="stylesheet" href="css/base.css">
-    <title>Index page</title>
+    <link rel="stylesheet" href="css/elements/NavBar.css">
+    <title>HOME</title>
 </head>
 <body>
-    <div class="buttons">
-        <button class="first" onclick="document.location.href = 'persons'"><p>Persons</p></button>
-        <button class="second" onclick="document.location.href = 'branches'"><p>Tree</p></button>
-        <button class="third"><p>None</p></button>
-    </div>
+    <header>
+        <nav>
+            <div class="home"></div>
+            <div class="item"><a href ="/contacts"><div>contacts</div></a></div>
+            <div class="item"><a href ="/branches"><div>branches</div></a></div>
+            <div class="item"><a href ="/persons"><div>persons</div></a></div>
+        </nav>
+    </header>
+    <main>
+        <p>Just example text</p>
+    </main>
+    <footer></footer>
 </body>
 </html>

@@ -1,0 +1,43 @@
+/*HEADER-NAV*/
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(hsla(216, 85%, 7%, 1), hsl(0, 0%, 0%, 0));
+    font-size: var(--header-font-size);
+    font-family: var(--font-family);
+}
+nav {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    justify-content: center;
+}
+nav>.item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: calc(var(--header-font-size)*2);
+    white-space: nowrap;
+    height: calc(var(--header-font-size)*3);
+    transform: skewX(-30deg);
+}
+.item>a {
+    font-size: var(--header-font-size);
+    box-sizing: border-box;
+    text-decoration: none;
+    user-select: none;
+    padding: 0 var(--header-font-size);
+    height: calc(var(--header-font-size)*1.5);
+
+    color: #fff;
+    border-radius: calc(var(--header-font-size)/4);
+    border: 2px solid hsl(210, 79%, 46%, 0.5);
+    background-color: hsl(210, 79%, 46%, 0.2);
+}
+.item>a:hover {
+    box-shadow: 0 0 5px 3px #64b5f6;
+}
+.item>*>div {
+    transform: skewX(30deg);
+}

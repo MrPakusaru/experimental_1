@@ -11,8 +11,6 @@ body
     min-width: 720px;
     background-color: hsl(235, 50%, 4%, 1);
 }
-
-
 /*MAIN*/
 main {
     display: flex;
