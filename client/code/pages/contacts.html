@@ -1,24 +1,460 @@
 <!doctype html>
-<html lang="ru">
+<html lang='ru'>
 <head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="#" /> <!-- TODO: ссылка на ico -->
-    <link rel="stylesheet" href="../css/forContacts.css">
-    <link rel="stylesheet" href="../css/elements/NavBar.css">
-    <title>C0NTACTS</title>
+    <meta charset='UTF-8'>
+    <link rel='shortcut icon' href='#' /> <!-- TODO: ссылка на ico -->
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='../css/forContacts.css'>
+    <link rel='stylesheet' href='../css/elements/NavBar.css'>
+    <link rel='stylesheet' href='../css/elements/Windows.css'>
+    <title>Контакты</title>
 </head>
 <body>
-<header>
-    <nav>
-        <div class="home"></div>
-        <div class="item"><a href ="/"><div>home</div></a></div>
-        <div class="item"><a href ="/branches"><div>branches</div></a></div>
-        <div class="item"><a href ="/persons"><div>persons</div></a></div>
-    </nav>
-</header>
-<main>
-    <p>Just example text</p>
-</main>
-<footer></footer>
+    <header>
+        <nav>
+            <div class='nav_left'>
+                <a class='home'></a>
+                <div class='arrows'>&rsaquo;&rsaquo;&rsaquo;</div>
+                <div class='place_text'>Контакты</div>
+            </div>
+            <div class='nav_right'>
+                <a class='nav_item' href ='/'><div>Главная</div></a>
+                <a class='nav_item' href ='/persons'><div>Прототип</div></a>
+                <a class='nav_item'><div>none</div></a>
+            </div>
+        </nav>
+        </header>
+    <main>
+            <div class='window contacts_table'>
+                <div class='window_bar'>
+                    <div class='window_b_head'>Список контактов</div>
+                    <button class='window_b_item' num_item='0'>Новый контакт</button>
+                </div>
+                <div class='window_inner'>
+                    <div class='contacts_head_row'>
+                        <div class='contacts_h_title col_name'>Name</div>
+                        <div class='contacts_h_title col_email'>Email</div>
+                        <div class='contacts_кh_title col_phone'>Phone</div>
+                        <div class='contacts_h_title col_birthday'>Birthday</div>
+                    </div><hr>
+                    <div class='contacts_body'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>11 октября 2222 г.</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Спирьянова Зинаида Платоновна</div>
+                            <div class='contacts_b_field col_email'>zinaida.spiryanova@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (923) 706-58-80</div>
+                            <div class='contacts_b_field col_birthday'>04.11.1968</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Щепкин Игнат Лаврентиич</div>
+                            <div class='contacts_b_field col_email'>ignat01111996@mail.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (937) 883-21-61</div>
+                            <div class='contacts_b_field col_birthday'>01.11.1996</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Тимиряев Яков Петрович</div>
+                            <div class='contacts_b_field col_email'>yakov6292@ya.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (984) 114-81-81</div>
+                            <div class='contacts_b_field col_birthday'>03.04.1984</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Цукор Юрий Викторович</div>
+                            <div class='contacts_b_field col_email'>yuriy96@outlook.com</div>
+                            <div class='contacts_b_field col_phone'>+7 (925) 246-38-71</div>
+                            <div class='contacts_b_field col_birthday'>11.05.1975</div>
+                        </div><hr class='line'>
+                        <div class='contacts_b_row'>
+                            <div class='contacts_b_field col_name'>Морозова Лариса Ираклиевна</div>
+                            <div class='contacts_b_field col_email'>larisa.morozova@yandex.ru</div>
+                            <div class='contacts_b_field col_phone'>+7 (934) 139-38-46</div>
+                            <div class='contacts_b_field col_birthday'>17.11.1992</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='window contact_add'>
+                <div class='window_bar'>
+                    <div class='window_b_head'>Создать контакт</div>
+                    <input class='window_b_item'
+                           num_item='0'
+                           form='new_contact'
+                           type='submit'
+                           value='Сохранить'>
+                </div>
+                <div class='window_inner'>
+                    <form id='new_contact'></form>
+                    <div class='form_inputs'>
+                        <div class='input_row'>
+                            <i class='material-icons'>person</i>
+                            <input_custom>
+                                <input
+                                    autocomplete='off'
+                                    class='other'
+                                    form='new_contact'
+                                    maxlength='255'
+                                    name='name'
+                                    pattern='[А-Яа-яЁё0-9A-Za-z\w\.]+'
+                                    placeholder=''
+                                    required
+                                    type='text'>
+                                <label>Имя</label>
+                            </input_custom>
+                        </div>
+                        <div class='input_row'>
+                            <i></i>
+                            <input_custom>
+                                <input
+                                    autocomplete='off'
+                                    class='other'
+                                    form='new_contact'
+                                    maxlength='255'
+                                    name='surname'
+                                    pattern='[А-Яа-яЁё0-9A-Za-z\w\.]+'
+                                    placeholder=''
+                                    required
+                                    type='text'>
+                                <label>Фамилия</label>
+                            </input_custom>
+                        </div><hr class='line'>
+                        <div class='input_row'>
+                            <i class='material-icons'>mail</i>
+                            <input_custom>
+                                <input
+                                    autocomplete='off'
+                                    class='other'
+                                    form='new_contact'
+                                    maxlength='255'
+                                    name='email'
+                                    placeholder=''
+                                    type='email'>
+                                <label>Эл. почта</label>
+                            </input_custom>
+                        </div><hr class='line'>
+                        <div class='input_row'>
+                            <i class='material-icons'>call</i>
+                            <input_custom>
+                                <input
+                                    autocomplete='off'
+                                    class='other'
+                                    form='new_contact'
+                                    maxlength='16'
+                                    name='tel'
+                                    placeholder=''
+                                    type='tel'>
+                                <label>Номер тел.</label>
+                            </input_custom>
+                        </div><hr class='line'>
+                        <div class='input_row'>
+                            <i class='material-icons'>star_rate</i>
+                            <input_custom>
+                                <input
+                                    autocomplete='off'
+                                    form='new_contact'
+                                    max='31'
+                                    min='1'
+                                    name='day'
+                                    placeholder=''
+                                    type='number'>
+                                <label>День</label>
+                            </input_custom>
+                            <input_custom>
+                                <select
+                                    form='new_contact'
+                                    name='month'
+                                    role="listbox">
+                                    <option value='none' selected></option>
+                                    <option value='1'>Январь</option>
+                                    <option value='2'>Февраль</option>
+                                    <option value='3'>Март</option>
+                                    <option value='4'>Апрель</option>
+                                    <option value='5'>Май</option>
+                                    <option value='6'>Июнь</option>
+                                    <option value='7'>Июль</option>
+                                    <option value='8'>Август</option>
+                                    <option value='9'>Сентябрь</option>
+                                    <option value='10'>Октябрь</option>
+                                    <option value='11'>Ноябрь</option>
+                                    <option value='12'>Декабрь</option>
+                                </select>
+                                <label>Месяц</label>
+                            </input_custom>
+                            <input_custom>
+                                <input
+                                    autocomplete='off'
+                                    form='new_contact'
+                                    max='9999'
+                                    min='0'
+                                    name='year'
+                                    placeholder=''
+                                    type='number'>
+                                <label>Год</label>
+                            </input_custom>
+<!--                            TODO: добавить кнопку удаления даты-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+    <footer></footer>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+    <script src='../js/contacts/f.js'></script>
 </body>
 </html>
