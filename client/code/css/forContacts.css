@@ -12,7 +12,8 @@ body
     padding: 0;
     min-width: 720px;
     height: 100vh;
-    background-image: url("https://wallpapersmug.com/u/8f55cf/planets_blue_falling_stars_minimal_4k.jpg");
+    /*background-image: url("https://wallpapersmug.com/u/8f55cf/planets_blue_falling_stars_minimal_4k.jpg");*/
+    background-image: url("https://get.wallhere.com/photo/artwork-digital-art-simple-background-space-planet-blue-background-shooting-stars-1819279.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -190,6 +191,19 @@ input_custom :first-child:focus {
     box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
+
+
+.input_invalid {
+    border: 2px solid red;
+    background-color: #ffcaca;
+}
+.input_invalid_label {
+    color: red;
+}
+
+
+
+
 /*Строки Input подробный стиль*/
 input_custom input[name='day'] {
     width: calc(var(--base-size)* var(--coef_b_fields)* 2);
@@ -201,4 +215,3 @@ input_custom select[name='month'] {
 input_custom input[name='year'] {
     width: calc(var(--base-size)* var(--coef_b_fields)* 3);
 }
-
