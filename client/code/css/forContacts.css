@@ -12,7 +12,6 @@ body
     padding: 0;
     min-width: 720px;
     height: 100vh;
-    /*background-image: url("https://wallpapersmug.com/u/8f55cf/planets_blue_falling_stars_minimal_4k.jpg");*/
     background-image: url("https://get.wallhere.com/photo/artwork-digital-art-simple-background-space-planet-blue-background-shooting-stars-1819279.jpg");
     background-attachment: fixed;
     background-position: center;
@@ -111,15 +110,9 @@ hr.line {
 
 
 /*--- Add Table ---*/
-form#new_contact {
-    display: none;
-}
-.contact_add {
-    flex-grow: 1;
-}
-.form_inputs {
-    padding: var(--base-size) 0;
-}
+form#new_contact { display: none; }
+.contact_add { flex-grow: 1; }
+.form_inputs { padding: var(--base-size) 0; }
 .input_row {
     display: flex;
     flex-direction: row;
@@ -141,14 +134,10 @@ input_custom {
     position: relative;
 }
 /*Прятки для стрелок*/
-input {
-    -moz-appearance: textfield;
-}
+input { -moz-appearance: textfield; }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button,
-input::-webkit-calendar-picker-indicator {
-    visibility: hidden;
-}
+input::-webkit-calendar-picker-indicator { visibility: hidden; }
 /*Оформление полей ввода*/
 input_custom :first-child {
     height: calc(var(--base-size)* 2);
@@ -158,8 +147,7 @@ input_custom :first-child {
     font-family: inherit;
     font-size: inherit;
     background-color: white;
-    color: #212529;
-    border: 1px solid #bdbdbd;
+    border: 1px solid;
     border-radius: calc(var(--base-size) / 2);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     appearance: none;
@@ -170,7 +158,6 @@ input_custom label {
     left: calc(var(--base-size)* 0.5);
     pointer-events: none;
     background: none;
-    color: #757575;
     padding-inline: calc(var(--base-size)* 0.25);
     transition: top 0.1s ease-in-out, scale 0.1s ease-in-out;
 }
@@ -182,28 +169,12 @@ input_custom input:not(:placeholder-shown)+label,
 input_custom select:not(:has(option[value="none"]:checked))+label {
     top: -25%;
     font-size: calc(var(--base-size)* 0.75);
-    background: linear-gradient(to bottom, #f0f5fb,  #fff 50%,  #0000 90%);
+    background: linear-gradient(to bottom, #f0f5fb00, #ffffff 50%, #ffffff 90%);
 }
 input_custom :first-child:focus {
-    color: #212529;
-    border-color: #bdbdbd;
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
-
-
-
-.input_invalid {
-    border: 2px solid red;
-    background-color: #ffcaca;
-}
-.input_invalid_label {
-    color: red;
-}
-
-
-
-
 /*Строки Input подробный стиль*/
 input_custom input[name='day'] {
     width: calc(var(--base-size)* var(--coef_b_fields)* 2);
@@ -214,4 +185,23 @@ input_custom select[name='month'] {
 }
 input_custom input[name='year'] {
     width: calc(var(--base-size)* var(--coef_b_fields)* 3);
+}
+/*Подсветка полей в соответствии с правильностью ввода информации*/
+input_custom.valid_input :first-child {
+    border-color:#bdbdbd;
+    color: #212529;
+}
+input_custom.valid_input label {
+    color: #757575;
+}
+input_custom.invalid_input :first-child {
+    border-color: #ff6347;
+    color: #ff6347;
+}
+input_custom.invalid_input :first-child:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 99, 71, 0.25);
+}
+input_custom.invalid_input label {
+    color: #ff6347;
 }
