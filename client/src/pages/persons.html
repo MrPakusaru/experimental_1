@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='ru'>
+<head>
+  <title>Persons</title>
+  <meta charset='UTF-8'/>
+  <link rel='shortcut icon' href='#' /> <!-- TODO: ссылка на ico -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <script src='../js/persons/other.js'></script>
+  <script src='../js/persons/base.js'></script>
+  <script src='../js/persons/requests.js'></script>
+  <style>
+    /*td { text-align: center; }*/
+    input[type='email'], input[type='text'] { width: calc(100% - 10px); }
+    #btn, #allInTable>h3, #allInTable>p { text-align-last: center; }
+    table { margin: 0 auto; }
+  </style>
+</head>
+<body>
+<div id='allInTable'>
+  <h3>Пользователи</h3>
+  <p id='ifError'></p>
+  <table>
+    <thead>
+    <tr>
+      <th>Имя</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+    <tr>
+      <form id='userForm'></form>
+      <td><label>
+        <input
+                autocomplete='name'
+                form='userForm'
+                maxlength='255'
+                name='name'
+                pattern='[А-Яа-яЁё0-9A-Za-z\w\.]+'
+                required
+                type='text'>
+      </label>
+      </td>
+      <td><input
+              autocomplete='email'
+              form='userForm'
+              maxlength='255'
+              name='email'
+              required
+              type='email'>
+      </td>
+      <td><input
+              form='userForm'
+              type='submit'
+              value='Добавить'>
+      </td>
+    </tr>
+    </thead>
+    <tbody id='usersTable'></tbody>
+  </table>
+</div>
+</body>
+</html>

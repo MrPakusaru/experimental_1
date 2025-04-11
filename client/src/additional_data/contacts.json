@@ -1,0 +1,91 @@
+{
+  "data":
+  [
+    {
+      "id_val": 0,
+      "full_name": {
+        "surname_val": "Цукор",
+        "name_val": "Юрий",
+        "last_name_val": "Викторович"
+      },
+
+      "connections": {
+        "email_val": "yuriy96@outlook.com",
+        "tel_val": "+7 (925) 246-38-71"
+      },
+      "date_birth": {
+        "day_val": 11,
+        "month_val": 12,
+        "year_val": 1975
+      }
+    },
+    {
+      "id_val": 1,
+      "full_name": {
+        "surname_val": "Спирьянова",
+        "name_val": "Зинаида",
+        "last_name_val": "Платоновна"
+      },
+      "connections": {
+        "email_val": "zinaid_vala.spiryanova@outlook.com",
+        "tel_val": "+7 (923) 706-58-80"
+      },
+      "date_birth": {
+        "day_val": 11,
+        "month_val": 11,
+        "year_val": 2222
+      }
+    },
+    {
+      "id_val": 2,
+      "full_name": {
+        "surname_val": "Щепкин",
+        "name_val": "Игнат",
+        "last_name_val": "Лаврентиич"
+      },
+      "connections": {
+        "email_val": "ignat01111996@mail.ru",
+        "tel_val": "+7 (937) 883-21-61"
+      },
+      "date_birth": {
+        "day_val": 1,
+        "month_val": 11,
+        "year_val": 1996
+      }
+    },
+    {
+      "id_val": 3,
+      "full_name": {
+        "surname_val": "Тимиряев",
+        "name_val": "Яков",
+        "last_name_val": "Петрович"
+      },
+      "connections": {
+        "email_val": "yakov6292@ya.ru",
+        "tel_val": "+7 (984) 114-81-81"
+      },
+      "date_birth": {
+        "day_val": 3,
+        "month_val": 4,
+        "year_val": 1984
+      }
+    },
+    {
+      "id_val": 4,
+      "full_name": {
+        "surname_val": "Морозова",
+        "name_val": "Лариса",
+        "last_name_val": "Ираклиевна"
+      },
+      "connections": {
+        "email_val": "larisa.morozova@yandex.ru",
+        "tel_val": "+7 (934) 139-38-46"
+      },
+      "date_birth": {
+        "day_val": 17,
+        "month_val": 11,
+        "year_val": 1992
+      }
+    }
+  ]
+}

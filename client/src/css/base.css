@@ -1,0 +1,15 @@
+/*BODY*/
+body
+{
+    background-color: hsl(235, 50%, 4%, 1);
+}
+
+
+/*MAIN*/
+main {
+    align-items: center;
+    height: 90vh;
+    color: floralwhite;
+    font-size: calc(var(--header-font-size)*4);
+    font-family: monospace;
+}
