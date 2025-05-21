@@ -21,7 +21,6 @@ export class GeneratorFragments {
             $('<div>', {class: 'window_inner'}).append(innerItems)
         );
     }
-
     /**
      * Возвращает набор элементов options с 12 месяцами и одним пустым значением (val:'none')
      * @returns {jQuery[]}

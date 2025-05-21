@@ -1,9 +1,10 @@
-import {Requests} from "./requests.js";
-import {GeneratorFragments} from "./generatorFragments.js";
-import {ContactsData} from "./contactsData.js";
-import {DateValidation} from "./dateValidation.js";
+import {Requests as Req} from './requests.js';
+import {GeneratorFragments} from './generatorFragments.js';
+import {ContactsData} from './contactsData.js';
+import {ObjectListeners as OL} from "./objectListeners.js";
 
-let CONTACTS;
+let CONTACTS = null;
+let FORM_MAP = null;
 
 /**
  * Набор функций генерации 'окон' с данными контактов
@@ -14,7 +15,7 @@ export class GeneratorElements {
      */
     static genContactsTable() {
         if ($('.contacts_table').length) return;
-        Requests.getDataOFContacts().then(data => {
+        Req.getContacts().then(data => {
             CONTACTS = new ContactsData().setListFromDB(data);
             $('main').append(
                 GeneratorFragments.genElementWindow(
@@ -24,7 +25,7 @@ export class GeneratorElements {
                     [
                         $('<div>').addClass('contacts_head_row').append(this.#tableFragments.genRow(
                             'contacts_h_title',
-                            ['col_name', 'col_email', 'col_phone', 'col_birthday'],
+                            ['col_name', 'col_email', 'col_phone', 'col_birthday', {'div': ['col_action']}],
                             ['Name', 'Email', 'Phone', 'Birthday']
                         )),
                         $('<div>').addClass('contacts_body').append(
@@ -34,78 +35,24 @@ export class GeneratorElements {
                 )
             );
             //Обработчики событий:
-            //Добавить обработчик на кнопку создания контакта
-            $('.contacts_table button.new_contact').on('click', () => this.genContactForm());
-            //Добавить обработчик на строку контакта
-            $('div.contacts_b_row').on('click', contactRow => {
-                this.genContactForm(CONTACTS.getById(Number($(contactRow.currentTarget).attr('id_val'))));
-                $('button.close').on('click', button =>
-                    button.currentTarget.closest('.window').remove()
-                )
-            });
+            OL.newContactButton(); //Обработчик на кнопке создания контакта
+            OL.selectContactRow(CONTACTS); //Обработчик на строке контакта
+            OL.deleteContactButton(CONTACTS)//Обработчик на кнопке удаления контакта
         });
     }
-
     /**
-     * Генерирует форму работы с данными контакта
-     * @param data
+     * Обновляет наполнение списка контаков при получении ответа от сервера
+     * @param data JSON список контактов от сервера
      */
-    static genContactForm(data = null) {
-        if ($('.contact_form').length) return;
-        const {typeForm} = this.#formFragments.data = {contacts: data, typeForm: data === null ? 'add' : 'edit'}
-        Requests.getContactFormMap().then(formMap => {
-            $('main').append(GeneratorFragments.genElementWindow(
-                'contact_form',
-                `${data === null ? 'Создать' : 'Редактировать'} контакт`,
-                [
-                    $('<input>')
-                        .attr({
-                            num_item: 0,
-                            form: `${typeForm}_contact`,
-                            type: 'submit',
-                            value: 'Сохранить'
-                        }),
-                    $('<button>')
-                        .addClass('material-icons close')
-                        .text('close')
-                        .css({'font-size': 'calc(var(--base-size)* 1.5)'})
-                ],
-                [
-                    $('<form>')
-                        .attr({
-                            id: `${typeForm}_contact`
-                        }),
-                    $('<div>')
-                        .addClass('form_inputs')
-                        .append(this.#formFragments.genRows(formMap))
-                ]
-            ));
-            //Обработчики событий:
-            //Обработчик на кнопку закрытия окна
-            $('button.close').on('click', e =>
-                e.currentTarget.closest('.window').remove()
-            );
-            //Определить поля даты
-            let dateElements = {
-                all: $('#field_day_id, #field_month_id, #field_year_id'),
-                day: $('#field_day_id'),
-                month: $('#field_month_id'),
-                year: $('#field_year_id'),
-                achtung: $('.achtung')
-            }
-            //Обработчик на валидацию полей даты при их изменении
-            dateElements.all.on('change', () => DateValidation.checkFieldsOfDate(dateElements));
-            //Обработчик на валидацию полей даты
-            $(`#${typeForm}_contact`).on('submit', (form) => {
-                form.preventDefault();
-                if(data === null) {
-                    // console.log($(form.currentTarget).serializeArray());
-                    Requests.postContactData($(form.currentTarget).serialize()).then(r => console.log(r))
-                    //TODO
-                }
-                else Requests.putContactData($(form.currentTarget)).then(r => console.log(r))
-            });
-        });
+    static updateContactsTable = data => {
+        CONTACTS = new ContactsData().setListFromDB(data);
+        $('div.contacts_body').replaceWith($('<div>')
+            .addClass('contacts_body')
+            .append(this.#tableFragments.genInner())
+        );
+        //Обработчики событий:
+        OL.selectContactRow(CONTACTS); //Обработчик на строке контакта
+        OL.deleteContactButton(CONTACTS)//Обработчик на кнопке удаления контакта
     }
     /**
      * Набор функций, отвечающих за генерацию таблицы контактов
@@ -125,26 +72,33 @@ export class GeneratorElements {
             const cArray = CONTACTS.getList();
             return Array.from(cArray, (contact, index) => {
                 //Деструктуризация каждого контакта
-                const {surname_val, name_val, last_name_val, email_val, tel_val, day_val, month_val, year_val, id_val} = contact;
-                //Установка формата вывода чисел в виде '00'
-                const format = num => num.toString().padStart(2, '0');
+                const {email_val, tel_val, day_val, month_val, year_val, id_val} = contact.getData();
+                const fullName = contact.getFullName();
+                //Установка формата вывода чисел в виде '00', если пусто, то '–'
+                const format = num => num?.toString().padStart(2, '0') ?? null;
+                // Если пусто, то пробел
+                const isset = (value, numLines = 0) => value ?? (numLines>0 ? '\u2013'.repeat(numLines) : ' ');
                 //Генерация строки из полученных полей
                 return [
-                    $('<div>').addClass('contacts_b_row').attr('id_val', id_val).append(this.#tableFragments.genRow(
-                        'contacts_b_field',
-                        ['col_name', 'col_email', 'col_phone', 'col_birthday'],
-                        [
-                            `${surname_val} ${name_val} ${last_name_val}`,
-                            email_val, tel_val,
-                            `${format(day_val)}.${format(month_val)}.${year_val}`
-                        ]
-                    )),
+                    $('<div>').addClass('contacts_b_row').attr('id_val', id_val).append(
+                        $('<div>').addClass('contacts_b_fields').append(this.#tableFragments.genRow(
+                            'contacts_b_field',
+                            ['col_name', 'col_email', 'col_phone', 'col_birthday'],
+                            [
+                                `${fullName}`,
+                                isset(email_val),
+                                isset(tel_val),
+                                `${isset(format(day_val), 2)}.${isset(format(month_val), 2)}.${isset(year_val, 4)}`
+                            ]
+                        )),
+                        this.#tableFragments.genRow('',[{'i': ['col_action', 'material-symbols-outlined']}],['delete'])
+                        // $('<i>').addClass(['col_action', 'material-symbols-outlined'].join(' '))
+                    ),
                     //Если последняя строка, не возвращать линию
                     index !== cArray.length-1 ? $('<hr>').addClass('line') : null
                 ];
             }).flat();
         },
-
         /**
          * Генерирует строки из jQuery объектов, получая на вход class 'роли', массив классов колонок и соотв. массив их значений
          * @param columnRoleClass {string} Атрибут `class` с 'ролью' объектов в строке
@@ -152,14 +106,75 @@ export class GeneratorElements {
          * @param values {string[]} Массив со значениями каждого объекта в строке
          * @returns {jQuery[]} Массив из элементов JQuery
          */
-        genRow(columnRoleClass, columnClasses, values = null) {
+        genRow: function (columnRoleClass, columnClasses, values = null) {
             //Внутри map(): создать элемент, добавить класс общей роли (заголовок/строка) и класс столбца, добавить текст, если values не null
-            return columnClasses.map(
-                (columnClass, index) => $('<div>')
-                    .addClass(`${columnRoleClass} ${columnClass}`)
-                    .text(values?.[index] ?? '')
+            return columnClasses.map((columnClass, index) => {
+                switch (typeof columnClass) {
+                    case 'object':
+                        return $(`<${Object.keys(columnClass)[0]}>`)
+                            .addClass(columnClass[Object.keys(columnClass)[0]].join(' '))
+                            .text(values?.[index] ?? '');
+                    default:
+                        return $('<div>')
+                            .addClass([columnRoleClass, columnClass].join(' '))
+                            .text(values?.[index] ?? '');
+                }}
             );
         }
+    }
+    /**
+     * Генерирует форму работы с данными контакта
+     * @param data JSON список контактов от сервера
+     */
+    static genContactForm(data = null) {
+        //Проверяет, имеется ли в памяти набор для построения формы
+        const issetFORM_MAP = functions => {
+            //Если нет, то сохраняет его и использует.
+            if(FORM_MAP===null) Req.getContactFormMap().then(formMap => functions(FORM_MAP = formMap));
+            //Если да, то просто использует.
+            else functions(FORM_MAP);
+        }
+        //Если входищие данные есть, то форма для редактирования контакта.
+        //Если нет, то для создания.
+        this.#formFragments.data = {
+            contacts: data,
+            typeForm: data === null ? 'add' : 'edit'
+        }
+        if (!$('.contact_form').length) {
+            issetFORM_MAP(formMap => {
+                $('main').append(GeneratorFragments.genElementWindow(
+                    'contact_form',
+                    `${data === null ? 'Создать' : 'Редактировать'} контакт`,
+                    [
+                        $('<input>')
+                            .attr({
+                                num_item: 0,
+                                form: `${this.#formFragments.data.typeForm}_contact`,
+                                type: 'submit',
+                                value: 'Сохранить'
+                            }),
+                        $('<button>')
+                            .addClass('material-symbols-outlined close')
+                            .text('close')
+                            .css({'font-size': 'calc(var(--base-size)* 1.5)'})
+                    ],
+                    [
+                        $('<form>')
+                            .attr({
+                                id: `${this.#formFragments.data.typeForm}_contact`
+                            }),
+                        $('<div>')
+                            .addClass('form_inputs')
+                            .append(this.#formFragments.genRows(formMap))
+                    ]
+                ));
+                //Обработчики событий:
+                OL.setCloseButton(); //Обработчик на кнопке закрытия окна
+                OL.checkDateValidation(); //Обработчик на валидацию полей даты при их изменении
+                OL.saveOrUpdateContact(data, this.#formFragments.data.typeForm); //Обработчик на кнопку submit
+            });
+        } else issetFORM_MAP(formMap => this.#formFragments.updateFormFields(data, formMap));
+
     }
     /**
      * Набор функций, отвечающих за генерацию формы
@@ -169,17 +184,35 @@ export class GeneratorElements {
             contacts: null,
             typeForm: null,
         },
-
+        /**
+         * Обновляет наполнение списка контаков при получении ответа от сервера
+         * @param formMap Объект с правилами генерации формы
+         * @param data JSON список контактов от сервера
+         */
+        updateFormFields: (data, formMap) => {
+            let formJQ = $('.contact_form form');
+            if(formJQ.attr('id')==='add_contact') {
+                $('.window_b_head').text('Редактировать контакт');
+                $(`.contact_form .window_b_item[type='submit']`).attr({form: 'edit_contact'});
+                formJQ.attr({id: 'edit_contact'});
+            }
+            $('div.form_inputs').replaceWith($('<div>')
+                .addClass('form_inputs')
+                .append(this.#formFragments.genRows(formMap))
+            );
+            OL.checkDateValidation(); //Обработчик на валидацию полей даты при их изменении
+            OL.saveOrUpdateContact(data, 'edit_contact'); //Обработчик на кнопку submit
+        },
         /**
          * Генератор дорожек для формы. Получает массив объектов и генерирует по нему иерархическую структуру из элементов формы.
          * @param formMapArray {({})[]}
          * @returns {jQuery[]} Массив из элементов JQuery
          */
-        genRows: (formMapArray) => {
+        genRows: formMapArray => {
             return formMapArray.map(({fields, ico, typeRow}) => {
                 if (typeRow === 'fields') return $('<div>').addClass('input_row').append(
                     // Если `row.ico` в значении `null`, то генерировать пустой элемент-иконку. Иначе генерировать с названием
-                    ico === null ? $('<i>') : $('<i>').addClass('material-icons').text(ico),
+                    ico === null ? $('<i>') : $('<i>').addClass('material-symbols-outlined').text(ico),
                     //Перебор полей в каждом наборе и выдача генерации в виде набора объектов JQuery
                     ...fields.map(field => {
                         const {tagInput, attributes, labelName} = field;
@@ -198,7 +231,6 @@ export class GeneratorElements {
 
 
         },
-
         /**
          * Генератор для полей формы. Получает объект с атрибутами input/select/etc и генерирует по нему поле для ввода.
          *
@@ -214,7 +246,11 @@ export class GeneratorElements {
                 form: `${typeForm}_contact`
             });
             //При fields.innerElems = 'monthOptions' возвращает <select> с набором <option> с месяцами внутри
-            if(innerElems === 'monthOptions') simpleField.append(GeneratorFragments.genMonthOptions());
+            if(innerElems === 'monthOptions') {
+                simpleField.append(GeneratorFragments.genMonthOptions());
+                //Если входящее значение месяца `null`, то заменить его на 'none'.
+                if (typeForm === 'edit' && contacts['month_val'] === null) contacts.month_val = 'none';
+            }
             //Если данные контакта имеются, то заполнить каждое поле соотв. данными
             if (contacts!==null) simpleField.val(contacts[attributes.name]);
             //При остальных значениях 'fields.innerElems' возвращает базовое поле

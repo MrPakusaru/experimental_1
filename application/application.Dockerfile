@@ -8,5 +8,5 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /var/www
 COPY ./laravel .
 #Чтобы избежать ошибки "Failed to open stream: Permission denied"
-RUN chgrp -R www-data /var/www/storage bootstrap/cache
-RUN chmod -R ug+rwx /var/www/storage bootstrap/cache
+RUN chgrp -R www-data /var/www/storage bootstrap/cache \
+    && chmod -R ug+rwx /var/www/storage bootstrap/cache

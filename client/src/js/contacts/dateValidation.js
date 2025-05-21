@@ -10,21 +10,21 @@ export class DateValidation {
     static changeValidity(isValid, elements) {
         elements.toggleClass('valid_input', isValid).toggleClass('invalid_input', !isValid);
     }
-
     /**
      * Подсвечивает поля day, month и year в зависимости от корректности введённой в них даты
-     * @param {any} fieldsDMY
+     * @param fieldsId {[string]}
      */
-    static checkFieldsOfDate(fieldsDMY) {
+    static checkFieldsOfDate(fieldsId) {
+        const [yearId, allFields, achtungInfo] = [fieldsId[2], $(fieldsId.join(', ')), $('.achtung')];
         //Получает из полей классом day, month и year свойство value
-        const [day, month, year] = fieldsDMY.all.toArray().map(el => el.value);
+        const [day, month, year] = allFields.toArray().map(({value}) => value);
         const actionMatrix = [
             // Если все поля пустые, то подсветки нет
             {
                 condition: () => day === '' && month === 'none',
                 action: () => {
-                    this.changeValidity(true, fieldsDMY.all.parent());
-                    if (fieldsDMY.achtung.html() !== '') fieldsDMY.achtung.html('');
+                    this.changeValidity(true, allFields.parent());
+                    if (achtungInfo.html() !== '') achtungInfo.html('');
                 }
             },
             // Если day или month пустое, а year только пустой, то в полях day и month подсветка.
@@ -33,28 +33,28 @@ export class DateValidation {
                 condition: () => day === '' || month === 'none',
                 action: () => {
                     if (year === '') {
-                        this.changeValidity(false, fieldsDMY.all.not('#field_year_id').parent()); //TODO
-                        this.changeValidity(true, fieldsDMY.year.parent());
+                        this.changeValidity(false, allFields.not(yearId).parent());
+                        this.changeValidity(true, $(yearId).parent());
                     } else {
-                        this.changeValidity(false, fieldsDMY.all.parent());
+                        this.changeValidity(false, allFields.parent());
                     }
-                    fieldsDMY.achtung.html('Укажите дату полностью.');
+                    achtungInfo.html('Укажите дату полностью.');
                 }
             },
             // Если year, day и month заполнены корректно, то нет подсветки (янв = 1, для Date янв = 0)
             {
                 condition: () => this.validateDate(day, month-1, year),
                 action: () => {
-                    this.changeValidity(true, fieldsDMY.all.parent());
-                    if (fieldsDMY.achtung.html() !== '') fieldsDMY.achtung.html('');
+                    this.changeValidity(true, allFields.parent());
+                    if (achtungInfo.html() !== '') achtungInfo.html('');
                 }
             },
             // Все остальные случаи, где все поля подсвечены
             {
                 condition: () => true,
                 action: () => {
-                    this.changeValidity(false, fieldsDMY.all.parent());
-                    fieldsDMY.achtung.html('Укажите допустимую дату.');
+                    this.changeValidity(false, allFields.parent());
+                    achtungInfo.html('Укажите допустимую дату.');
                 }
             }
         ];

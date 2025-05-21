@@ -1,3 +1,2 @@
-import {GeneratorElements} from "./generatorElements.js";
-
+import {GeneratorElements} from './generatorElements.js';
 GeneratorElements.genContactsTable();

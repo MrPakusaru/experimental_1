@@ -1,7 +1,12 @@
+import {ContactObject as Cnt} from "./contactObject.js";
 /**
  * Класс, который управляет массивами контактов
  */
 export class ContactsData {
+    /**
+     * Массив контактов
+     * @type {[ContactObject]}
+     */
     #contacts = [];
     /**
      * Получает массив объектов формата БД и преобразует его в простой для работы со свойствами контактов
@@ -10,33 +15,19 @@ export class ContactsData {
      * @returns {ContactsData}
      */
     setListFromDB(arrayDB) {
-        this.#contacts = arrayDB['data']?.map(
-            ({
-                 id_val,
-                 full_name,
-                 connections,
-                 date_birth
-            }) => ({
-                id_val,
-                ...full_name,
-                ...connections,
-                ...date_birth
-            })
-        ) ?? [];
+        this.#contacts = arrayDB['data']?.map(contact => new Cnt().setDataFromDB(contact)) ?? [];
         return this;
     }
-
     /**
      * Возвращает массив `object` контактов
-     * @returns {[]}
+     * @returns {[ContactObject]}
      */
     getList = () => this.#contacts;
-
     /**
      * Получает id контакта и возвращает `object` контакт
      *
-     * @param id    Ключевое значение контакта
-     * @returns {*} `Object` контакт
+     * @param id {number}   Ключевое значение контакта
+     * @returns {ContactObject} `Object` контакт
      */
-    getById = (id) => (typeof id === 'number' && id >= 0) ? this.#contacts.find(contact => contact['id_val'] === id) : null;
+    getById = (id) => (typeof id === 'number' && id >= 0) ? this.#contacts.find(contact => contact.getData('id_val') === id) : null;
 }

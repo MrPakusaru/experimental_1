@@ -11,15 +11,25 @@
           "autocomplete":"off",
           "class":"other",
           "id":"field_name_id",
-          "maxlength":"255",
+          "maxlength":"100",
           "name":"name_val",
-          "pattern":"[А-Яа-яЁёA-Za-zw.]+",
+          "pattern":"[А-Яа-яЁёA-Za-zw\\s]+",
           "placeholder":"",
           "required":"",
           "type":"text"
         },
         "innerElems":null,
         "labelName":"Имя"
+      },
+      {
+        "tagInput":"input",
+        "attributes":
+        {
+          "type":"hidden",
+          "id":"field_name_id",
+          "name":"id_val"
+        },
+        "innerElems":null
       }
     ]
   },
@@ -35,9 +45,9 @@
           "autocomplete":"off",
           "class":"other",
           "id":"field_surname_id",
-          "maxlength":"255",
+          "maxlength":"100",
           "name":"surname_val",
-          "pattern":"[А-Яа-яЁёA-Za-zw.]+",
+          "pattern":"[А-Яа-яЁёA-Za-zw\\s]+",
           "placeholder":"",
           "type":"text"
         },
@@ -58,9 +68,9 @@
           "autocomplete":"off",
           "class":"other",
           "id":"field_last_name_id",
-          "maxlength":"255",
+          "maxlength":"100",
           "name":"last_name_val",
-          "pattern":"[А-Яа-яЁёA-Za-zw.]+",
+          "pattern":"[А-Яа-яЁёA-Za-zw\\s]+",
           "placeholder":"",
           "type":"text"
         },
@@ -84,7 +94,7 @@
           "autocomplete":"off",
           "class":"other",
           "id":"field_tel_id",
-          "maxlength":"16",
+          "maxlength":"20",
           "name":"tel_val",
           "placeholder":"",
           "type":"tel"
@@ -106,7 +116,7 @@
           "autocomplete":"off",
           "class":"other",
           "id":"field_email_id",
-          "maxlength":"255",
+          "maxlength":"50",
           "name":"email_val",
           "placeholder":"",
           "type":"email"

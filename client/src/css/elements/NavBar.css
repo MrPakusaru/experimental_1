@@ -42,11 +42,10 @@ nav {
     position: relative;
     width: calc(var(--header-font-size) * 2.5);
     height: calc(var(--header-font-size) * 2.5);
-    background: url("https://cdn-icons-png.flaticon.com/512/4698/4698817.png") center;
+    background: url('../../images/icon.svg') center;
     background-size: cover;
 }
 .home:active {
-    background: url("https://cdn-icons-png.flaticon.com/512/4698/4698819.png") center;
     background-size: cover;
 }
 .arrows {
