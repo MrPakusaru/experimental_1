@@ -1,0 +1,106 @@
+/*ROOTS*/
+:root {
+    --header-font-size: 1.125rem; /* 16px=1rem */
+    --header-h: calc(var(--header-font-size) * 3);
+    --font-nav: monospace;
+}
+/*HEADER-NAV*/
+header {
+    position: fixed;
+    top: 0;
+    height: var(--header-h);
+    width: 100vw;
+    color: #fff;
+    font-size: var(--header-font-size);
+    font-family: var(--font-nav);
+    z-index: 10;
+    border-bottom: 1px solid #fffd;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, .7);
+    background: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.07) 0%, hsla(206, 100%, 29%, 0.16) 20%);
+    user-select: none;
+}
+nav {
+    height: inherit;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    user-select: none;
+    padding: 0 var(--header-font-size) 0 var(--header-font-size);
+}
+/*nav-left*/
+.nav_left {
+    height: inherit;
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--header-font-size));
+    align-items: center;
+
+}
+.home {
+    position: relative;
+    width: calc(var(--header-font-size) * 2.5);
+    height: calc(var(--header-font-size) * 2.5);
+    background: url('../../images/icon.svg') center;
+    background-size: cover;
+}
+.home:active {
+    background-size: cover;
+}
+.arrows {
+    font-size: calc(var(--header-font-size) * 2);
+    letter-spacing: calc(var(--header-font-size) * -0.5);
+    margin-left: calc(var(--header-font-size)* -0.5);
+}
+.place_text {
+    font-size: calc(var(--header-font-size) * 1.6);
+}
+/*nav-right*/
+.nav_right {
+    height: inherit;
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--header-font-size) * 2);
+}
+.nav_item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    color: #fff;
+    text-decoration: none;
+}
+.nav_item:hover {
+    text-shadow: 2px 2px 2px red, 0 0 5px blue, 0 0 5px blue;
+    transition: 500ms ease all;
+}
+.nav_item:before {
+    top: 15%;
+    right: 0;
+}
+.nav_item:after{
+    top: inherit;
+    right: inherit;
+    left: 0;
+    bottom: 15%;
+}
+.nav_item:before,
+.nav_item:after{
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    transition: 500ms ease all;
+    background: #2196f3;
+}
+.nav_item:hover:before,
+.nav_item:hover:after{
+    width: 100%;
+    transition: 500ms ease all;
+}
+/*MAIN*/
+main {
+    margin-top: var(--header-h);;
+}
