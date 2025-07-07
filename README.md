@@ -22,3 +22,8 @@
 >
 >Тогда напиши `composer require --dev barryvdh/laravel-ide-helper`,
 >а затем `php artisan ide-helper:models`
+
+### Для управления Artisan как вспомогательного контейнера:
+>Вместо `php artisan ...`
+> 
+>Можно написать `docker-compose run artisan ...`
