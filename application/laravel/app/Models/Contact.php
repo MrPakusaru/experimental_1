@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,9 +15,23 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed|string $birth_month
  * @property mixed|string $birth_year
  * @property int $id
+ * @mixin Eloquent
  */
 class Contact extends Model
 {
     public $timestamps = false;
-    //
+    /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = [
+        'surname',
+        'name',
+        'last_name',
+        'email',
+        'phone',
+        'birth_day',
+        'birth_month',
+        'birth_year',
+        'id'
+    ];
 }
