@@ -26,9 +26,29 @@
 ### Для управления Artisan как вспомогательного контейнера:
 >Вместо `php artisan ...`
 > 
->Можно написать `docker-compose run artisan ...`
+>Можно написать `docker compose run artisan ...`
 
+### Vite
+>Для подключения файлов js и css через Vite в папке resources
+>
+>нужно (в локальной среде) в папке laravel прописать `npm run build`
+
+## Доступы
 ### Нет Доступа? :
 > Если к локальный файлам проекта нет доступа
 > 
 > Можно прописать `sudo chown -R $(whoami) папка`
+
+### На локалке:
+>Для удобства с доступами лучше использовать на локалке
+>`php artisan make ...`
+>
+>`php artisan install:api`
+
+### Внутри контейнера:
+>Для удобства с доступами лучше использовать в контейнере с php
+>`php artisan migrate`
+>
+>`php artisan db:seed`
+>
+>`php artisan install:api`
